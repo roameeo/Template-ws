@@ -88,76 +88,76 @@ resource "azurerm_resource_group" "rg2" {
 resource "azurerm_virtual_network" "vnet2" {
   name                = var.Virtual_network_id
   address_space       = ["10.16.0.0/16"]
-  location            = azurerm_resource_group.rg.location
-  resource_group_name = azurerm_resource_group.rg.name
+  location            = azurerm_resource_group.rg2.location
+  resource_group_name = azurerm_resource_group.rg2.name
 }
 
 resource "azurerm_subnet" "subnet11" {
   name                 = "DMZ-SUBNET-NC"
-  resource_group_name  = azurerm_resource_group.rg.name
-  virtual_network_name = azurerm_virtual_network.vnet.name
+  resource_group_name  = azurerm_resource_group.rg2.name
+  virtual_network_name = azurerm_virtual_network.vnet2.name
   address_prefixes     = ["10.16.1.0/24"]  # Replace with the appropriate address prefix
 }
 
 resource "azurerm_subnet" "subnet12" {
   name                 = "AD-SUBNET-NC"
-  resource_group_name  = azurerm_resource_group.rg.name
-  virtual_network_name = azurerm_virtual_network.vnet.name
+  resource_group_name  = azurerm_resource_group.rg2.name
+  virtual_network_name = azurerm_virtual_network.vnet2.name
   address_prefixes     = ["10.16.0.0/24"]  # Replace with the appropriate address prefix
 }
 
 resource "azurerm_subnet" "subnet13" {
   name                 = "APPSERVERS-SUBNET-NC"
-  resource_group_name  = azurerm_resource_group.rg.name
-  virtual_network_name = azurerm_virtual_network.vnet.name
+  resource_group_name  = azurerm_resource_group.rg2.name
+  virtual_network_name = azurerm_virtual_network.vnet2.name
   address_prefixes     = ["10.16.3.0/24"]  # Replace with the appropriate address prefix
 }
 
 resource "azurerm_subnet" "subnet14" {
   name                 = "INFOSEC-SUBNET-NC"
-  resource_group_name  = azurerm_resource_group.rg.name
-  virtual_network_name = azurerm_virtual_network.vnet.name
+  resource_group_name  = azurerm_resource_group.rg2.name
+  virtual_network_name = azurerm_virtual_network.vnet2.name
   address_prefixes     = ["10.16.6.0/24"]  # Replace with the appropriate address prefix
 }
 
 resource "azurerm_subnet" "subnet15" {
   name                 = "SQLSERVERS-SUBNET-NC"
-  resource_group_name  = azurerm_resource_group.rg.name
-  virtual_network_name = azurerm_virtual_network.vnet.name
+  resource_group_name  = azurerm_resource_group.rg2.name
+  virtual_network_name = azurerm_virtual_network.vnet2.name
   address_prefixes     = ["10.16.4.0/24"]  # Replace with the appropriate address prefix
 }
 
 resource "azurerm_subnet" "subnet16" {
   name                 = "ITTOOLS-SUBNET-NC"
-  resource_group_name  = azurerm_resource_group.rg.name
-  virtual_network_name = azurerm_virtual_network.vnet.name
+  resource_group_name  = azurerm_resource_group.rg2.name
+  virtual_network_name = azurerm_virtual_network.vnet2.name
   address_prefixes     = ["10.16.5.0/24"]  # Replace with the appropriate address prefix
 }
 
 resource "azurerm_subnet" "subnet17" {
   name                 = "NETSERVERS-SUBNET-NC"
-  resource_group_name  = azurerm_resource_group.rg.name
-  virtual_network_name = azurerm_virtual_network.vnet.name
+  resource_group_name  = azurerm_resource_group.rg2.name
+  virtual_network_name = azurerm_virtual_network.vnet2.name
   address_prefixes     = ["10.16.2.0/24"]  # Replace with the appropriate address prefix
 }
 
 resource "azurerm_subnet" "subnet18" {
   name                 = "FILESHARE-SUBNET-NC"
-  resource_group_name  = azurerm_resource_group.rg.name
-  virtual_network_name = azurerm_virtual_network.vnet.name
+  resource_group_name  = azurerm_resource_group.rg2.name
+  virtual_network_name = azurerm_virtual_network.vnet2.name
   address_prefixes     = ["10.16.7.0/24"]  # Replace with the appropriate address prefix
 }
 
 resource "azurerm_subnet" "subnet19" {
   name                 = "MOVEIT-SUBNET-NC"
-  resource_group_name  = azurerm_resource_group.rg.name
-  virtual_network_name = azurerm_virtual_network.vnet.name
+  resource_group_name  = azurerm_resource_group.rg2.name
+  virtual_network_name = azurerm_virtual_network.vnet2.name
   address_prefixes     = ["10.16.8.0/24"]  # Replace with the appropriate address prefix
 }
 
 resource "azurerm_subnet" "subnet20" {
   name                 = "JH-SUBNET-NC"
-  resource_group_name  = azurerm_resource_group.rg.name
-  virtual_network_name = azurerm_virtual_network.vnet.name
+  resource_group_name  = azurerm_resource_group.rg2.name
+  virtual_network_name = azurerm_virtual_network.vnet2.name
   address_prefixes     = ["10.16.9.0/24"]  # Replace with the appropriate address prefix
 }
