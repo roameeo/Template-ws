@@ -81,7 +81,7 @@ resource "azurerm_subnet" "subnet10" {
 }
 
 resource "azurerm_resource_group" "rg2" {
-  name     = "NCUS-DR-RSG"  # Set to the name of your existing resource group
+  name     = "SB-RESOURCEGROUP-NC"  # Set to the name of your existing resource group
   location = "North Central US"
 }
 
