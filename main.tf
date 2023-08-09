@@ -1,10 +1,10 @@
 resource "azurerm_resource_group" "rg" {
-  name     = var.resource_group_name
+  name     = "SCUS-PRD-RSG"  # Set to the name of your existing resource group
   location = "South Central US"
 }
 
 resource "azurerm_virtual_network" "vnet" {
-  name                = var.Virtual_network_id
+  name                = "SB-VNET01-SC"  #  Set to the name of the existing virtual network
   address_space       = ["10.15.0.0/16"]
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
@@ -81,12 +81,12 @@ resource "azurerm_subnet" "subnet10" {
 }
 
 resource "azurerm_resource_group" "rg2" {
-  name     = var.resource_group_name
+  name     = "NCUS-DR-RSG"  # Set to the name of your existing resource group
   location = "North Central US"
 }
 
 resource "azurerm_virtual_network" "vnet2" {
-  name                = var.Virtual_network_id
+  name                = "SB-VNET02-NC"   # Set to the name of the existing virtual network
   address_space       = ["10.16.0.0/16"]
   location            = azurerm_resource_group.rg2.location
   resource_group_name = azurerm_resource_group.rg2.name
