@@ -182,7 +182,7 @@ resource "azurerm_virtual_machine" "sccm_vm" {
 
   os_profile {
     computer_name  = "SCCM01"
-    admin_username = "adminuser"
+    admin_username = "azureadmin"
   }
 
   source_image_reference {
