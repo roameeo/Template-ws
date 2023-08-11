@@ -162,7 +162,7 @@ resource "azurerm_subnet" "subnet20" {
   address_prefixes     = ["10.16.9.0/24"]  # Replace with the appropriate address prefix
 }
 
-#imported vm's
+#imported vm
 resource "azurerm_virtual_machine" "sccm_vm" {
   count                 = 1  # Set this to 1 if you're importing a single VM
   name                  = "SCCM01"  # The name of the imported VM
@@ -185,12 +185,12 @@ resource "azurerm_virtual_machine" "sccm_vm" {
     admin_username = "azureadmin"
   }
 
-  source_image_reference {
-    publisher = "MicrosoftWindowsServer"
-    offer     = "WindowsServer"
-    sku       = "2022-Datacenter-AzureEdition"
-    version   = "latest"
-  }
+#  source_image_reference {
+#    publisher = "MicrosoftWindowsServer"
+#    offer     = "WindowsServer"
+#    sku       = "2022-Datacenter-AzureEdition"
+#    version   = "latest"
+#  }
 
   boot_diagnostics {
     enabled             = true
@@ -201,5 +201,69 @@ resource "azurerm_virtual_machine" "sccm_vm" {
     Application = "SCCM"
     buildby     = "Joshua Ellison"
     BuildDate   = "08/09/2023"
+  }
+}
+
+# application server vm's
+resource "random_password" "admin_password" {
+  length           = 16
+  special          = true
+  override_special = "!#$%&*()-_=+[]{}<>:?"
+}
+
+resource "azurerm_virtual_machine" "vms" {
+  for_each            = toset(var.vm_names)
+
+  name                = each.key
+  location            = azurerm_resource_group.rg.location
+  resource_group_name = azurerm_resource_group.rg.name
+
+  network_interface_ids = [azurerm_network_interface.nic[var.vm_nic_map[each.key]].id]
+
+  vm_size               = "Standard_D4s_v3"
+  delete_os_disk_on_termination = true
+
+  storage_os_disk {
+    name                = "osdisk-${each.key}"
+    caching             = "ReadWrite"
+    create_option       = "FromImage"
+    managed_disk_type   = "Standard_SSD_LRS"
+  }
+
+  storage_data_disk {
+    name                = "datadisk-${each.key}"
+    caching             = "None"
+    lun                 = 0
+    disk_size_gb        = 1024
+    create_option       = "Empty"
+    managed_disk_type   = "Standard_SSD_LRS"
+  }
+
+  storage_image_reference {
+    publisher           = "MicrosoftWindowsServer"
+    offer               = "WindowsServer"
+    sku                 = "2022-Datacenter-AzureEdition"
+    version             = "latest"
+  }
+
+  os_profile {
+    computer_name        = each.key
+    admin_username       = "azureadmin"
+    admin_password       = random_password.admin_password.result
+  }
+
+  os_profile_windows_config {
+    provision_vm_agent  = true
+  }
+
+  boot_diagnostics {
+    enabled             = true
+    storage_uri = "https://susserbankbootdiag.file.core.windows.net/"
+  }
+
+  tags = {
+    ServerType = "Application"
+    buildby     = "Stormy Winters"
+    BuildDate   = "08/10/2023"
   }
 }
