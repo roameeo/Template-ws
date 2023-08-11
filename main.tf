@@ -218,7 +218,7 @@ resource "azurerm_virtual_machine" "vms" {
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
 
-  network_interface_ids = [azurerm_network_interface.nic[var.vm_nic_map[each.key]].id]
+  network_interface_ids = [azurerm_network_interface.nic_names[var.vm_nic_map[each.key]].id]
 
   vm_size               = "Standard_D4s_v3"
   delete_os_disk_on_termination = true
@@ -227,7 +227,7 @@ resource "azurerm_virtual_machine" "vms" {
     name                = "osdisk-${each.key}"
     caching             = "ReadWrite"
     create_option       = "FromImage"
-    managed_disk_type   = "Standard_SSD_LRS"
+    managed_disk_type   = "Standard_LRS"
   }
 
   storage_data_disk {
@@ -236,7 +236,7 @@ resource "azurerm_virtual_machine" "vms" {
     lun                 = 0
     disk_size_gb        = 1024
     create_option       = "Empty"
-    managed_disk_type   = "Standard_SSD_LRS"
+    managed_disk_type   = "Standard_LRS"
   }
 
   storage_image_reference {
