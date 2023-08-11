@@ -177,7 +177,7 @@ resource "azurerm_virtual_machine" "sccm_vm" {
     name              = "SCCM01_OsDisk_1_2f670f15846e40a2a9c842555f72542e"
     caching           = "ReadWrite"
     create_option     = "FromImage"
-    managed_disk_type = "Standard_SSD_LRS"
+    managed_disk_type = "Standard_LRS"
   }
 
   os_profile {
@@ -218,7 +218,7 @@ resource "azurerm_virtual_machine" "vms" {
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
 
-  network_interface_ids = [azurerm_network_interface.nic_names[var.vm_nic_map[each.key]].id]
+  network_interface_ids = [azurerm_network_interface.nic[each.key].id]
 
   vm_size               = "Standard_D4s_v3"
   delete_os_disk_on_termination = true
