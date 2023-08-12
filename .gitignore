@@ -36,3 +36,4 @@ terraform.rc
 
 # Ignore "work in progress" files
 nsgs
+*.exe

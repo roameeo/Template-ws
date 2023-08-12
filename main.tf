@@ -211,6 +211,19 @@ resource "random_password" "admin_password" {
   override_special = "!#$%&*()-_=+[]{}<>:?"
 }
 
+resource "azurerm_network_interface" "nic" {
+  count               = length(var.nic_names)
+  name                = var.nic_names[count.index]
+  location            = azurerm_resource_group.rg.location
+  resource_group_name = azurerm_resource_group.rg.name
+
+  ip_configuration {
+    name                          = "ipconfig-${count.index}"
+    subnet_id                     = azurerm_subnet.subnet13.id
+    private_ip_address_allocation = "Dynamic"
+  }
+}
+
 resource "azurerm_virtual_machine" "vms" {
   for_each            = toset(var.vm_names)
 
