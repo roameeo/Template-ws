@@ -11,6 +11,12 @@ resource "azurerm_network_interface" "ad_nics" {
   }
 }
 
+resource "random_password" "admin_password" {
+  length           = 16
+  special          = true
+  override_special = "!#$%&*()-_=+[]{}<>:?"
+}
+
 resource "azurerm_virtual_machine" "ad_vms" {
   for_each            = toset(var.ad_vm_names)
 
