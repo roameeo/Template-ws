@@ -1,5 +1,7 @@
 output "resource_group_name" {
-  value = azurerm_resource_group.rg.name
+  value = [azurerm_resource_group.rg.name,
+    azurerm_resource_group.rg2.name,
+    azurerm_resource_group.rg3].name
 }
 
 output "virtual_network_id" {
@@ -36,6 +38,9 @@ output "nic_names" {
   value = [for key, _ in azurerm_virtual_machine.vms : azurerm_network_interface.nic[var.nic_names[key]].name]
 }
 
+output "ad_nic_names" {
+  value = [for key, _ in azurerm_virtual_machine.ad_vms : azurerm_network_interface.ad_nics[var.ad_nic_names[key]].name]
+}
 
 output "admin_password" {
   value       = random_password.admin_password.result
