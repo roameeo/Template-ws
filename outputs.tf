@@ -1,7 +1,7 @@
 output "resource_group_name" {
   value = [azurerm_resource_group.rg.name,
     azurerm_resource_group.rg2.name,
-    azurerm_resource_group.rg3].name
+    azurerm_resource_group.rg3.name]
 }
 
 output "virtual_network_id" {
