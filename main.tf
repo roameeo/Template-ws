@@ -1,5 +1,5 @@
 module "ad_vm_module" {
-  source = "ad_vm_module"  # Adjust the path accordingly
+  source = "./ad_vm_module"  # Adjust the path accordingly
 
   existing_resource_group_name   = "SCUS-PRD-RSG"
   existing_resource_group2       = "SCUS-PRD-MGMT"
