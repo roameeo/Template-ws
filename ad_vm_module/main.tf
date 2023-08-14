@@ -1,60 +1,12 @@
-variable "existing_resource_group_name" {
-  type    = string
-  description = "SCUS-PRD-RSG"
-}
-
-variable "existing_resource_group2" {
-    type = string
-    description = "SCUS-PRD-MGMT"
-}
-
-variable "existing_virtual_network_name" {
-  type    = string
-  description = "SB-VNET01-SC"
-}
-
-variable "existing_subnet_name" {
-  type    = string
-  description = "AD-SUBNET-SC"
-}
-
-variable "ad_vm_names" {
-  type    = list(string)
-  default = []
-}
-
-variable "ad_nic_names" {
-  type    = list(string)
-  default = []
-}
-
-variable "ad_vm_nic_map" {
-  type = map(string)
-  default = {}
-}
-
-variable "location" {
-  type    = string
-  default = "South Central US"
-}
-
-resource "azurerm_virtual_network" "vnet" {
-  name                = var.existing_virtual_network_name
-  address_space       = ["10.15.0.0/16"]
-  location            = var.location
-  resource_group_name = var.existing_resource_group_name  # Use the existing resource group
-}
-
-
 resource "azurerm_network_interface" "ad_nics" {
   count               = length(var.ad_nic_names)
   name                = var.ad_nic_names[count.index]
   location            = var.location
-  resource_group_name = var.existing_resource_group_name
+  resource_group_name = var.existing_resource_group_name2
 
   ip_configuration {
     name                          = "ipconfig-${count.index}"
-    subnet_id                     = azurerm_subnet.AD-SUBNET-SC.id
+    subnet_id                     = azurerm_subnet.AD-SUBNET-SC.id  
     private_ip_address_allocation = "Dynamic"
   }
 }

@@ -1,11 +1,11 @@
 variable "existing_resource_group_name" {
   type    = string
-  default = "SCUS-PRD-RSG"  # Default resource group
+  default = "SCUS-PRD-RSG"  
 }
 
 variable "existing_resource_group_name2" {
   type    = string
-  default = "SCUS-PRD-MGMT"  # Default resource group
+  default = "SCUS-PRD-MGMT"  
 }
 
 variable "existing_virtual_network_name" {
@@ -39,6 +39,6 @@ variable "ad_vm_nic_map" {
 
 variable "location" {
   type    = string
-  default = "South Central US"  # Default location
+  default = "South Central US"  
 }
 
