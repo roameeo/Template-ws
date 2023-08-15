@@ -14,7 +14,7 @@ output "ad_nic_ids" {
 }
 
 output "admin_password" {
-  value       = module.ad_vm_module.admin_password
+  value       = random_password.admin_password.result
   sensitive   = true
   description = "Auto-generated admin password for the virtual machines"
 }

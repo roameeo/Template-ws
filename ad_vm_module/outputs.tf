@@ -1,9 +1,9 @@
-output "ad_vms_names" {
-  value = azurerm_virtual_machine.ad_vms_names
+output "ad_vms" {
+  value = azurerm_virtual_machine.ad_vms
 }
 
 output "ad_nics" {
-  value = var.ad_nic_names
+  value = azurerm_network_interface.ad_nics
 }
 
 output "admin_password" {
