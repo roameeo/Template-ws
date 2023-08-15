@@ -1,5 +1,5 @@
-output "ad_vms" {
-  value = azurerm_virtual_machine.ad_vms
+output "ad_vms_names" {
+  value = azurerm_virtual_machine.ad_vms_names
 }
 
 output "ad_nics" {

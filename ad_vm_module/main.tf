@@ -6,14 +6,9 @@ resource "azurerm_network_interface" "ad_nics" {
 
   ip_configuration {
   name                          = "ipconfig-${count.index}"
-  subnet_id                     = azurerm_subnet.var.existing_subnet_name.id  # Reference the subnet resource using existing_subnet_name
+  subnet_id                     = azurerm_subnet[var.existing_subnet_name].id  # Reference the subnet resource using existing_subnet_name
   private_ip_address_allocation = "Dynamic"
   }
-}
-
-variable "admin_password" {
-  type        = string
-  description = "Admin password for the virtual machines"
 }
 
 resource "azurerm_virtual_machine" "ad_vms" {
