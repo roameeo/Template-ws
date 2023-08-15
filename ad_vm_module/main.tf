@@ -40,7 +40,7 @@ resource "azurerm_virtual_machine" "ad_vms" {
   os_profile {
     computer_name        = each.key
     admin_username       = "azureadmin"
-    admin_password = var.admin_password  # Use the provided admin password
+    admin_password = random_password.admin_password.result # Use the provided admin password
   }
 
   os_profile_windows_config {

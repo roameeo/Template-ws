@@ -14,11 +14,7 @@ module "ad_vm_module" {
   }
   location                     = "South Central US"
 
-resource "random_password" "admin_password" {
-  length           = 16
-  special          = true
-  override_special = "!#$%&*()-_=+[]{}<>:?"
-}
+
 
 admin_password = random_password.admin_password.result
 }
