@@ -4,11 +4,11 @@ output "ad_vm_names" {
 }
 
 output "ad_vm_ids" {
-  value       = module.ad_vm_module.ad_vms[*].id
+  value       = module.ad_vm_module.ad_vms_names.id
   description = "IDs of the Active Directory VMs"
 }
 
 output "ad_nic_ids" {
-  value       = module.ad_vm_module.ad_nics[*].id
+  value       = module.ad_vm_module.ad_nic_names.id
   description = "IDs of the Network Interfaces for Active Directory VMs"
 }
