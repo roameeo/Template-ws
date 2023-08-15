@@ -37,11 +37,6 @@ variable "ad_vm_nic_map" {
   }
 }
 
-variable "admin_password" {
-  type    = string
-  description = "Admin password for the virtual machines"
-}
-
 variable "location" {
   type    = string
   default = "South Central US"  

@@ -11,6 +11,11 @@ resource "azurerm_network_interface" "ad_nics" {
   }
 }
 
+variable "admin_password" {
+  type        = string
+  description = "Admin password for the virtual machines"
+}
+
 resource "azurerm_virtual_machine" "ad_vms" {
   for_each            = toset(var.ad_vm_names)
 
