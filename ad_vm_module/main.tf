@@ -5,9 +5,9 @@ resource "azurerm_network_interface" "ad_nics" {
   resource_group_name = var.existing_resource_group_name2
 
   ip_configuration {
-    name                          = "ipconfig-${count.index}"
-    subnet_id                     = var.existing_subnet_name.id  # Reference the subnet resource using existing_subnet_name
-    private_ip_address_allocation = "Dynamic"
+  name                          = "ipconfig-${count.index}"
+  subnet_id                     = azurerm_subnet.var.existing_subnet_name.id  # Reference the subnet resource using existing_subnet_name
+  private_ip_address_allocation = "Dynamic"
   }
 }
 
