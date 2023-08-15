@@ -1,5 +1,6 @@
-output "ad_vms" {
-  value = azurerm_virtual_machine.ad_vms
+output "ad_vm_names" {
+  value       = azurerm_virtual_machine.ad_vms[*].name
+  description = "Names of the Active Directory VMs"
 }
 
 output "ad_nics" {
