@@ -1,43 +1,39 @@
 variable "existing_resource_group_name" {
   type    = string
-  default = "SCUS-PRD-RSG"  
+  description = "Existing resource group for VMs"
 }
 
 variable "existing_resource_group_name2" {
   type    = string
-  default = "SCUS-PRD-MGMT"  
+  description = "Existing resource group for networking"
 }
 
 variable "existing_virtual_network_name" {
   type    = string
-  description = "SB-VNET01-SC"
+  description = "Existing virtual network"
 }
 
 variable "existing_subnet_name" {
   type    = string
-  description = "AD-SUBNET-SC"
+  description = "Existing subnet"
 }
 
 variable "ad_vm_names" {
   type    = list(string)
-  default = ["DC01", "DC02", "CA01"]
+  description = "List of VM names"
 }
 
 variable "ad_nic_names" {
   type    = list(string)
-  default = ["dc01-nic", "dc02-nic", "ca01-nic"]
+  description = "List of NIC names"
 }
 
 variable "ad_vm_nic_map" {
   type = map(string)
-  default = {
-    "DC01" = "dc01-nic"
-    "DC02" = "dc02-nic"
-    "CA01" = "ca01-nic"
-  }
+  description = "Map of VM names to NIC names"
 }
 
 variable "location" {
   type    = string
-  default = "South Central US"  
+  default = "South Central US"
 }
