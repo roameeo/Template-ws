@@ -6,15 +6,9 @@ resource "azurerm_network_interface" "ad_nics" {
 
   ip_configuration {
     name                          = "ipconfig-${count.index}"
-    subnet_id                     = existing_subnet.AD-SUBNET-SC.id  
+    subnet_id                     = azurerm_subnet.existing_subnet_name.id  # Reference the subnet resource using existing_subnet_name
     private_ip_address_allocation = "Dynamic"
   }
-}
-
-resource "random_password" "admin_password" {
-  length           = 16
-  special          = true
-  override_special = "!#$%&*()-_=+[]{}<>:?"
 }
 
 resource "azurerm_virtual_machine" "ad_vms" {
@@ -46,7 +40,7 @@ resource "azurerm_virtual_machine" "ad_vms" {
   os_profile {
     computer_name        = each.key
     admin_username       = "azureadmin"
-    admin_password       = random_password.admin_password.result
+    admin_password = var.admin_password  # Use the provided admin password
   }
 
   os_profile_windows_config {

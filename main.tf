@@ -13,4 +13,7 @@ module "ad_vm_module" {
     "CA01" = "ca01-nic"
   }
   location                     = "South Central US"
+
+
+admin_password = random_password.admin_password.result
 }
