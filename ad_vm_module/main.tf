@@ -7,8 +7,8 @@ resource "azurerm_subnet" "existing_subnet" {
 }
 
 resource "azurerm_network_interface" "ad_nics" {
-  count              = length(var.ad_nic_names)
-  name               = var.ad_nic_names[count.index]
+  for_each           = toset(var.ad_nic_names)
+  name               = var.ad_nic_names
   location           = var.location
   resource_group_name = var.existing_resource_group_name2
 
@@ -22,7 +22,7 @@ resource "azurerm_network_interface" "ad_nics" {
 resource "azurerm_virtual_machine" "ad_vms" {
   for_each            = toset(var.ad_vm_names)
 
-  name                = each.key
+  name                = var.ad_vm_names
   location            = var.location
   resource_group_name = var.existing_resource_group_name
 
