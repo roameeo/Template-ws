@@ -1,5 +1,5 @@
 output "ad_vm_names" {
-  value       = module.ad_vm_module.ad_vms_names
+  value       = module.ad_vm_module.ad_vm_names
   description = "Names of the Active Directory VMs"
 }
 
