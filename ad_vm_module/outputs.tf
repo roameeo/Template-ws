@@ -3,12 +3,12 @@ output "ad_vms_names" {
   description = "Names of the Active Directory VMs"
 }
 
-output "ad_vms_ids" {
+output "ad_vm_ids" {
   value       = azurerm_virtual_machine.ad_vms[*].id
   description = "IDs of the Active Directory VMs"
 }
 
-output "ad_nics_ids" {
+output "ad_nic_ids" {
   value       = azurerm_network_interface.ad_nics[*].id
   description = "IDs of the Network Interfaces for Active Directory VMs"
 }
