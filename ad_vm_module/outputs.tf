@@ -1,16 +1,11 @@
-output "ad_vms_names" {
+output "ad_vm_names" {
   value       = azurerm_virtual_machine.ad_vms[*].name
   description = "Names of the Active Directory VMs"
 }
 
-output "ad_vm_ids" {
-  value       = azurerm_virtual_machine.ad_vms[*].id
-  description = "IDs of the Active Directory VMs"
-}
-
-output "ad_nic_ids" {
-  value       = azurerm_network_interface.ad_nics[*].id
-  description = "IDs of the Network Interfaces for Active Directory VMs"
+output "ad_nics" {
+  value       = azurerm_network_interface.ad_nics
+  description = "Network Interfaces for Active Directory VMs"
 }
 
 output "admin_password" {

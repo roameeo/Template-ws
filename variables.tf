@@ -13,6 +13,11 @@ variable "existing_virtual_network_name" {
   default = "SC-VNET01-SC"
 }
 
+variable "existing_subnet_name" {
+  type = string
+  default = "AD-SUBNET-SC"
+}
+
 variable "location" {
   type    = string
   default = "South Central US"
