@@ -13,7 +13,7 @@ resource "azurerm_network_interface" "ad_nics" {
   resource_group_name = var.existing_resource_group_name2
 
   ip_configuration {
-    name                          = "ipconfig-${count.index}"
+    name                          = "ipconfig-${each.key}"
     subnet_id                     = azurerm_subnet.existing_subnet.id
     private_ip_address_allocation = "Dynamic"
   }
