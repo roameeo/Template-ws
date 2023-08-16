@@ -13,6 +13,11 @@ variable "existing_subnet_name" {
   default = "AD-SUBNET-SC"
 }
 
+variable "location" {
+  type    = string
+  default = "South Central US"
+}
+
 variable "ad_vm_names" {
   type    = list(string)
   default = ["DC01", "DC02", "CA01"]
@@ -30,4 +35,8 @@ variable "ad_vm_nic_map" {
     "DC02" = "dc02-nic"
     "CA01" = "ca01-nic"
   }
+}
+
+variable "admin_password" {
+  type = string
 }
