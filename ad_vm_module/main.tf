@@ -14,7 +14,7 @@ resource "azurerm_network_interface" "ad_nics" {
 
   ip_configuration {
     name                          = "ipconfig-${count.index}"
-    subnet_id                     = azurerm_subnet.var.existing_subnet_name.id
+    subnet_id                     = azurerm_subnet.existing_subnet.id
     private_ip_address_allocation = "Dynamic"
   }
 }
