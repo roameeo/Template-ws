@@ -2,6 +2,9 @@
 	"folders": [
 		{
 			"path": "."
+		},
+		{
+			"path": "appsrv_vm_module"
 		}
 	],
 	"settings": {}
