@@ -4,6 +4,8 @@ module "ad_vm_module" {
  #Resource Groups
   existing_resource_group_name = var.existing_resource_group_name
   existing_resource_group_name2 = var.existing_resource_group_name2
+  existing_resource_group_name3 = var.existing_resource_group_name3
+  existing_resource_group_name4 = var.existing_resource_group_name4
  
  #Virtual Networks
   existing_virtual_network_name = var.existing_virtual_network_name
@@ -36,7 +38,7 @@ module "ad_vm_module" {
   ad_vm_nic_map = var.ad_vm_nic_map
 
   #appserv_vm_module
-  
+
 
 
 #Admin password
