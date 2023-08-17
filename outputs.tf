@@ -1,17 +1,33 @@
-output "ad_vm_names" {
-  value       = module.ad_vm_module.ad_vm_names
+output "existing_vm1" {
+  value       = module.ad_vm_module.existing_vm1
   sensitive   = true
   description = "Names of the Active Directory VMs"
 }
 
-output "ad_nics" {
-  value       = module.ad_vm_module.ad_nics
-  sensitive   = true
-  description = "Network Interfaces for Active Directory VMs"
+output "existing_vm1_id" {
+  value       = azurerm_virtual_machine.existing_vm1.id
+  description = "ID of the imported VM"
 }
 
-output "admin_password" {
-  value       = random_password.admin_password.result
+output "existing_vm2" {
+  value       = module.ad_vm_module.existing_vm2
   sensitive   = true
-  description = "Auto-generated admin password for the virtual machines"
+  description = "Names of the Active Directory VMs"
+}
+
+output "existing_vm2_id" {
+  value       = azurerm_virtual_machine.existing_vm2.id
+  description = "ID of the imported VM"
+}
+
+output "existing_vm3" {
+  value       = module.ad_vm_module.existing_vm3
+  sensitive   = true
+  description = "Names of the Active Directory VMs"
+}
+
+
+output "existing_vm3_id" {
+  value       = azurerm_virtual_machine.existing_vm3.id
+  description = "ID of the imported VM"
 }
