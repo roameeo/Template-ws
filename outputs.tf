@@ -1,10 +1,12 @@
 output "ad_vm_names" {
   value       = module.ad_vm_module.ad_vm_names
+  sensitive   = true
   description = "Names of the Active Directory VMs"
 }
 
 output "ad_nics" {
   value       = module.ad_vm_module.ad_nics
+  sensitive   = true
   description = "Network Interfaces for Active Directory VMs"
 }
 
