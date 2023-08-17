@@ -12,7 +12,6 @@ module "ad_vm_module" {
   existing_subnet_name = var.existing_subnet_name
 }
 
-
 resource "azurerm_virtual_network" "existing_virtual_network_name2" {
   name                = "SB-VNET-02-NC"
   resource_group_name = var.existing_resource_group_name2
