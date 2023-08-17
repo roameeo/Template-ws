@@ -1,6 +1,6 @@
 variable "existing_resource_group_name" {
   type    = string
-  default = "SCUS-PRD-MGMT"
+  default = "SCUS-PRD-RSG"
 }
 
 variable "existing_resource_group_name2" {
@@ -28,22 +28,22 @@ variable "existing_virtual_network_name2" {
   default = "SB-VNET-02-NC"
 }
 
-variable "existing_subnet_name" {
+variable "existing_subnet_name2" {
   type = string
   default = "DMZ-SUBNET-SC"
 }
 
-variable "existing_subnet_name11" {
+variable "existing_subnet_name12" {
   type = string
   default = "DMZ-SUBNET-NC"
 }
 
-variable "existing_subnet_name2" {
+variable "existing_subnet_name" {
   type = string
   default = "AD-SUBNET-SC"
 }
 
-variable "existing_subnet_name12" {
+variable "existing_subnet_name11" {
   type = string
   default = "AD-SUBNET-NC"
 }
