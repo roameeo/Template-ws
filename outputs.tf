@@ -1,5 +1,6 @@
 output "ad_vm_names" {
   value       = module.ad_vm_module.ad_vm_names
+  sensitive   = false
   description = "Names of the Active Directory VMs"
 }
 
