@@ -5,10 +5,10 @@ output "ad_vm_names1" {
 
 output "ad_vm_names2" {
   value       = azurerm_virtual_machine.existing_vm2
-  description = "Network Interfaces for Active Directory VMs"
+  description = "Names of the Active Directory VMs"
 }
 
 output "ad_vm_names3" {
   value       = azurerm_virtual_machine.existing_vm3
-  description = "Network Interfaces for Active Directory VMs"
+  description = "Names of the Active Directory VMs"
 }
