@@ -13,7 +13,7 @@ resource "azurerm_network_interface" "appsrv_nics" {
 
   ip_configuration {
     name                          = "ipconfig-${each.key}"
-    subnet_id                     = data.azurerm_subnet.existing_subnet3_name.id
+    subnet_id                     = data.azurerm_subnet.existing_subnet_name3.id
     private_ip_address_allocation = "Dynamic"
   }
 }
