@@ -11,6 +11,13 @@ data "azurerm_subnet" "existing_subnet3" {
   resource_group_name  = var.existing_resource_group_name2
 }
 
+data "terraform_remote_state" "root" {
+  backend = "local"  # Use the appropriate backend configuration
+
+  config = {
+    path = ".terraform.tfstate" 
+  }
+}
 
 resource "azurerm_network_interface" "appsrv_nics" {
   for_each            = toset(var.appsrv_nic_names)
@@ -53,7 +60,7 @@ resource "azurerm_virtual_machine" "appsrv_vms" {
   os_profile {
     computer_name        = each.key
     admin_username       = "azureadmin"
-    admin_password       = random_password.admin_password.result
+    admin_password       = data.terraform_remote_state.root.outputs.admin_password
   }
 
   os_profile_windows_config {
