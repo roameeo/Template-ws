@@ -1,4 +1,4 @@
-  resource "azurerm_virtual_network" "existing_subnet_name3" {
+  resource "azurerm_subnet" "existing_subnet_name3" {
   name                = "APPSERV-SUBNET-SC"
   resource_group_name = var.existing_resource_group_name2
   location            = var.location
