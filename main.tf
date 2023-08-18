@@ -37,7 +37,7 @@ module "appsrv_vm_module" {
   resource_group_name = var.existing_resource_group_name2
   location            = var.location
   address_space       = ["10.15.3.0/24"] 
-}
+  }
 
   #admin_password
   admin_password = random_password.admin_password.result 
