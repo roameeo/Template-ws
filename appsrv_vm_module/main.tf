@@ -6,7 +6,7 @@ resource "azurerm_subnet" "existing_subnet" {
   address_prefixes = ["10.15.3.0/24"]  # Replace this with your desired subnet IP range
 }
 
-resource "azurerm_network_interface" "ad_nics" {
+resource "azurerm_network_interface" "appsrv_nics" {
   for_each           = toset(var.appsrv_nic_names)
   name               = var.appsrv_nic_names
   location           = var.location
@@ -19,13 +19,13 @@ resource "azurerm_network_interface" "ad_nics" {
   }
 }
 
-resource "azurerm_virtual_machine" "ad_vms" {
+resource "azurerm_virtual_machine" "appsrv_vms" {
   for_each            = toset(var.appsrv_vm_names)
   name                = var.appsrv_vm_names
   location            = var.location
   resource_group_name = var.existing_resource_group_name
 
-  network_interface_ids = [azurerm_network_interface.appsrv_nic_names[var.appsrv_vm_nic_map[each.key]].id]
+  network_interface_ids = [azurerm_network_interface.appsrv_nics[var.appsrv_vm_nic_map[each.key]].id]
 
   vm_size               = "Standard_D4s_v3"
   delete_os_disk_on_termination = true

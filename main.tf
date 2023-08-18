@@ -32,7 +32,7 @@ module "appsrv_vm_module" {
   existing_virtual_network_name = var.existing_virtual_network_name
  
  #Subnets
-  existing_subnet_name = var.existing_subnet_name3
+  existing_subnet_name3 = var.existing_subnet_name3
 
   #admin_password
   admin_password = random_password.admin_password.result 
