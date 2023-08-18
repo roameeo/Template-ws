@@ -1,14 +1,15 @@
   resource "azurerm_subnet" "existing_subnet_name3" {
   name                = "APPSERV-SUBNET-SC"
+  virtual_network_name = var.existing_virtual_network_name
   resource_group_name = var.existing_resource_group_name2
   location            = var.location
-  address_space       = ["10.15.3.0/24"] 
+  address_prefixes    = ["10.15.3.0/24"] 
   }
 
 resource "azurerm_network_interface" "appsrv_nics" {
-  for_each           = toset(var.appsrv_nic_names)
-  name               = each.value
-  location           = var.location
+  for_each            = toset(var.appsrv_nic_names)
+  name                = each.value
+  location            = var.location
   resource_group_name = var.existing_resource_group_name2
 
   ip_configuration {
