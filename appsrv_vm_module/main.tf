@@ -2,7 +2,6 @@
   name                = "APPSERV-SUBNET-SC"
   virtual_network_name = var.existing_virtual_network_name
   resource_group_name = var.existing_resource_group_name2
-  location            = var.location
   address_prefixes    = ["10.15.3.0/24"] 
   }
 
@@ -14,7 +13,7 @@ resource "azurerm_network_interface" "appsrv_nics" {
 
   ip_configuration {
     name                          = "ipconfig-${each.key}"
-    subnet_id                     = data.azurerm_subnet.existing_subnet3.id
+    subnet_id                     = data.azurerm_subnet.existing_subnet3_name.id
     private_ip_address_allocation = "Dynamic"
   }
 }
