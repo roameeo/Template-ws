@@ -1,3 +1,4 @@
+#Active Directory
 module "ad_vm_module" {
   source = "./ad_vm_module"
 
@@ -19,6 +20,7 @@ resource "azurerm_virtual_network" "existing_virtual_network_name2" {
   address_space       = ["10.16.0.0/16"] 
 }
 
+#Application servers
 module "appsrv_vm_module" {
   source = "./appsrv_vm_module"
 
