@@ -1,11 +1,11 @@
 variable "existing_resource_group_name" {
-  type = string
-  description = "Name of the existing resource group for VMs"
+  type    = string
+  default = "SCUS-PRD-RSG"
 }
 
 variable "existing_resource_group_name2" {
-  type = string
-  description = "Name of the existing resource group for networking"
+  type    = string
+  default = "SCUS-PRD-MGMT"
 }
 
 variable "existing_virtual_network_name" {
@@ -23,17 +23,17 @@ variable "location" {
   default = "South Central US"
 }
 
-variable "vm_names" {
+variable "appsrv_vm_names" {
   type    = list(string)
   default = ["AXIOM01", "AXIOMSB01", "KAS01", "PL01", "SF01", "SFSB01", "SYN01", "VERA01"]
   }
 
-variable "nic_names" {
+variable "appsrv_nic_names" {
   type    = list(string)
   default = ["axiom01-nic", "axiomsb01-nic", "kas01-nic", "pl01-nic", "sf01-nic", "sfsb01-nic", "syn01-nic", "vera01-nic"]
 	}
 
-variable "vm_nic_map" {
+variable "appsrv_vm_nic_map" {
   type = map(string)
   default = {
     "AXIOM01"   = "axiom01-nic"
