@@ -1,4 +1,4 @@
-resource "azurerm_subnet" "existing_subnet" {
+resource "azurerm_subnet" "existing_subnet_name3" {
   name                 = var.existing_subnet_name3
   resource_group_name = var.existing_resource_group_name2
   virtual_network_name = var.existing_virtual_network_name
