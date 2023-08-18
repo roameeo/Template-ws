@@ -32,12 +32,26 @@ module "appsrv_vm_module" {
   existing_virtual_network_name = var.existing_virtual_network_name
  
  #Subnets
-  resource "azurerm_virtual_network" "existing_subnet_name3" {
-  name                = "APPSERV-SUBNET-SC"
+data "azurerm_subnet" "existing_subnet" {
+  name                 = var.existing_subnet_name3
+  virtual_network_name = var.existing_virtual_network_name
+  resource_group_name  = var.existing_resource_group_name2
+}
+
+
+  resource "azurerm_network_interface" "appsrv_nics" {
+  for_each           = toset(var.appsrv_nic_names)
+  name               = each.value
+  location           = var.location
   resource_group_name = var.existing_resource_group_name2
-  location            = var.location
-  address_space       = ["10.15.3.0/24"] 
+
+  ip_configuration {
+    name                          = "ipconfig-${each.key}"
+    subnet_id                     = azurerm_virtual_network.existing_subnet_name3.subnets["APPSERV-SUBNET-SC"].id
+    private_ip_address_allocation = "Dynamic"
   }
+}
+
 
   #admin_password
   admin_password = random_password.admin_password.result 
