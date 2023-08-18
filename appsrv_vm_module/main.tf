@@ -1,9 +1,16 @@
-  resource "azurerm_subnet" "existing_subnet_name3" {
+resource "azurerm_subnet" "existing_subnet_name3" {
   name                = "APPSERV-SUBNET-SC"
   virtual_network_name = var.existing_virtual_network_name
   resource_group_name = var.existing_resource_group_name2
   address_prefixes    = ["10.15.3.0/24"] 
   }
+
+data "azurerm_subnet" "existing_subnet3" {
+  name                 = var.existing_subnet_name3
+  virtual_network_name = var.existing_virtual_network_name
+  resource_group_name  = var.existing_resource_group_name2
+}
+
 
 resource "azurerm_network_interface" "appsrv_nics" {
   for_each            = toset(var.appsrv_nic_names)
@@ -13,7 +20,7 @@ resource "azurerm_network_interface" "appsrv_nics" {
 
   ip_configuration {
     name                          = "ipconfig-${each.key}"
-    subnet_id                     = data.azurerm_subnet.existing_subnet_name3.id
+    subnet_id                     = data.azurerm_subnet.existing_subnet3.id
     private_ip_address_allocation = "Dynamic"
   }
 }
