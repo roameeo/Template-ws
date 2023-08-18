@@ -2,14 +2,9 @@
 module "ad_vm_module" {
   source = "./ad_vm_module"
 
- #Resource Groups
   existing_resource_group_name = var.existing_resource_group_name
   existing_resource_group_name2 = var.existing_resource_group_name2
- 
- #Virtual Networks
   existing_virtual_network_name = var.existing_virtual_network_name
- 
-#Subnets
   existing_subnet_name = var.existing_subnet_name
 }
 
@@ -24,15 +19,12 @@ resource "azurerm_virtual_network" "existing_virtual_network_name2" {
 module "appsrv_vm_module" {
   source = "./appsrv_vm_module"
 
- #Resource Groups
   existing_resource_group_name = var.existing_resource_group_name
   existing_resource_group_name2 = var.existing_resource_group_name2
- 
- #Virtual Networks
   existing_virtual_network_name = var.existing_virtual_network_name
  
  #Subnets
-  data "azurerm_subnet" "existing_subnet3" {
+  data "azurerm_subnet" "existing_subnet" {
     name                 = var.existing_subnet_name3
     virtual_network_name = var.existing_virtual_network_name
     resource_group_name  = var.existing_resource_group_name2
@@ -40,7 +32,7 @@ module "appsrv_vm_module" {
 
   resource "azurerm_network_interface" "appsrv_nics" {
     for_each           = toset(var.appsrv_nic_names)
-    name               = each.value
+    name               = each.key
     location           = var.location
     resource_group_name = var.existing_resource_group_name2
 

@@ -13,15 +13,14 @@ resource "azurerm_network_interface" "appsrv_nics" {
 
   ip_configuration {
     name                          = "ipconfig-${each.key}"
-    subnet_id                     = data.azurerm_subnet.existing_subnet3.id
+    subnet_id                     = module.appsrv_vm_module.data.azurerm_subnet.existing_subnet3.id
     private_ip_address_allocation = "Dynamic"
   }
 }
 
-
 resource "azurerm_virtual_machine" "appsrv_vms" {
   for_each            = toset(var.appsrv_vm_names)
-  name                = var.appsrv_vm_names
+  name                = each.key
   location            = var.location
   resource_group_name = var.existing_resource_group_name
 
