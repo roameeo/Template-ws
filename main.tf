@@ -19,14 +19,9 @@ resource "azurerm_virtual_network" "existing_virtual_network_name2" {
 module "appsrv_vm_module" {
   source = "./appsrv_vm_module"
 
- # Define the existing resource group names and virtual network names
-  existing_resource_group_name = var.existing_resource_group_name
-  existing_resource_group_name2 = var.existing_resource_group_name2
-  existing_virtual_network_name = var.existing_virtual_network_name
-  existing_virtual_network_name2 = var.existing_virtual_network_name2
- 
   # Reference the state file to fetch resource information
   existing_resource_group_name_from_state = data.terraform_remote_state.susserbank.outputs.existing_resource_group_name
+  existing_resource_group_name2_from_state = data.terraform_remote_state.susserbank.outputs.existing_resource_group_name2
   existing_virtual_network_name_from_state = data.terraform_remote_state.susserbank.outputs.existing_virtual_network_name
   existing_subnet_name3_from_state = data.terraform_remote_state.susserbank.outputs.existing_subnet_name3
 
