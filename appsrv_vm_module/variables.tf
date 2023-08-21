@@ -1,21 +1,21 @@
-variable "existing_resource_group_name" {
+variable "existing_resource_group_name_from_state" {
   type    = string
-  default = "SCUS-PRD-RSG"
+  default = null
 }
 
-variable "existing_resource_group_name2" {
+variable "existing_resource_group_name2_from_state" {
   type    = string
-  default = "SCUS-PRD-MGMT"
+  default = null
 }
 
-variable "existing_virtual_network_name" {
+variable "existing_virtual_network_name_from_state" {
   type    = string
-  default = "SC-VNET01-SC"
+  default = null
 }
 
-variable "existing_subnet_name3" {
-  type = string
-  default = "APPSERVERS-SUBNET-SC"
+variable "existing_subnet_name3_from_state" {
+  type    = string
+  default = null
 }
 
 variable "location" {

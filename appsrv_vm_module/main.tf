@@ -1,15 +1,16 @@
-resource "azurerm_subnet" "existing_subnet_name3" {
+resource "azurerm_virtual_network" "existing_subnet_name3" {
   name                = "APPSERV-SUBNET-SC"
-  virtual_network_name = var.existing_virtual_network_name
-  resource_group_name = var.existing_resource_group_name2
-  address_prefixes    = ["10.15.3.0/24"] 
-  }
+  virtual_network_name = var.existing_virtual_network_name_from_state
+  resource_group_name = var.existing_resource_group_name_from_state
+  address_prefixes    = ["10.15.3.0/24"]
+}
 
 data "azurerm_subnet" "existing_subnet3" {
-  name                 = var.existing_subnet_name3
-  virtual_network_name = var.existing_virtual_network_name
-  resource_group_name  = var.existing_resource_group_name2
+  name                 = var.existing_subnet_name3_from_state
+  virtual_network_name = var.existing_virtual_network_name_from_state
+  resource_group_name  = var.existing_resource_group_name_from_state
 }
+
 
 data "terraform_remote_state" "Susser-Bank" {
   backend = "local"  # Use the appropriate backend configuration
