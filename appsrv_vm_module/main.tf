@@ -60,7 +60,7 @@ resource "azurerm_virtual_machine" "appsrv_vms" {
   os_profile {
     computer_name        = each.key
     admin_username       = "azureadmin"
-    admin_password       = data.terraform_remote_state.root.outputs.admin_password
+    admin_password       = random_password.admin_password.result
   }
 
   os_profile_windows_config {

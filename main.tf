@@ -19,15 +19,27 @@ resource "azurerm_virtual_network" "existing_virtual_network_name2" {
 module "appsrv_vm_module" {
   source = "./appsrv_vm_module"
 
+ # Define the existing resource group names and virtual network names
   existing_resource_group_name = var.existing_resource_group_name
   existing_resource_group_name2 = var.existing_resource_group_name2
   existing_virtual_network_name = var.existing_virtual_network_name
+  existing_virtual_network_name2 = var.existing_virtual_network_name2
  
- #Subnets
-  data "azurerm_subnet" "existing_subnet" {
-    name                 = var.existing_subnet_name3
-    virtual_network_name = var.existing_virtual_network_name
-    resource_group_name  = var.existing_resource_group_name2
+  # Reference the state file to fetch resource information
+  existing_resource_group_name_from_state = data.terraform_remote_state.susserbank.outputs.existing_resource_group_name
+  existing_virtual_network_name_from_state = data.terraform_remote_state.susserbank.outputs.existing_virtual_network_name
+  existing_subnet_name3_from_state = data.terraform_remote_state.susserbank.outputs.existing_subnet_name3
+
+  appsrv_nic_names = var.appsrv_nic_names
+  location         = var.location
+}
+
+# Fetch values from the remote state file
+data "terraform_remote_state" "susserbank" {
+  backend = "local"  # Use the appropriate backend configuration
+
+  config = {
+    path = ".terraform.tfstate"  # Adjust the path to your state file
   }
 
   resource "azurerm_network_interface" "appsrv_nics" {
@@ -35,13 +47,14 @@ module "appsrv_vm_module" {
     name               = each.key
     location           = var.location
     resource_group_name = var.existing_resource_group_name2
+  }
 
   ip_configuration {
     name                          = "ipconfig-${each.key}"
     subnet_id                     = azurerm_virtual_network.existing_subnet_name3.subnets["APPSERV-SUBNET-SC"].id
     private_ip_address_allocation = "Dynamic"
   }
-}
+
 
   #admin_password
   admin_password = random_password.admin_password.result 
