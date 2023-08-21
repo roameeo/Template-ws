@@ -11,7 +11,7 @@ data "azurerm_subnet" "existing_subnet3" {
   resource_group_name  = var.existing_resource_group_name2
 }
 
-data "terraform_remote_state" "root" {
+data "terraform_remote_state" "Susser-Bank" {
   backend = "local"  # Use the appropriate backend configuration
 
   config = {
