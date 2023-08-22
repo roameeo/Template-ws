@@ -13,9 +13,3 @@ output "existing_virtual_network_name" {
 output "existing_subnet_name" {
   value = module.ad_vm_module.existing_subnet_name
 }
-
-output "existing_vm_names" {
-  value = var.existing_vm_names
-}
-
-
