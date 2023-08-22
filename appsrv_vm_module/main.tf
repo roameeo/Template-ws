@@ -59,7 +59,7 @@ resource "azurerm_virtual_machine" "appsrv_vms" {
   os_profile {
     computer_name        = each.key
     admin_username       = "azureadmin"
-    admin_password       = random_password.admin_password.result
+    admin_password       = data.terraform_remote_state.Susser-Bank.outputs.admin_password
   }
 
   os_profile_windows_config {
