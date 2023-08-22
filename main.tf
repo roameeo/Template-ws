@@ -8,8 +8,8 @@ data "terraform_remote_state" "Susser-Bank" {
 }
 
 data "azurerm_virtual_machine" "existing_vms" {
-  count = length(var.existing_vm_names)
-  name  = var.existing_vm_names[count.index]
+  count = length(var.existing_vm_names_from_state)
+  name  = var.existing_vm_names_from_state[count.index]
 }
 
 
@@ -21,7 +21,7 @@ module "ad_vm_module" {
   existing_resource_group_name2_from_state = data.terraform_remote_state.Susser-Bank.outputs.existing_resource_group_name2
   existing_virtual_network_name_from_state = data.terraform_remote_state.Susser-Bank.outputs.existing_virtual_network_name
   existing_subnet_name_from_state = data.terraform_remote_state.Susser-Bank.outputs.existing_subnet_name
-  admin_password = module.Susser-Bank.admin_password
+  admin_password = random_password.admin_password.result
 }
 
 #Application servers
@@ -33,7 +33,7 @@ module "appsrv_vm_module" {
   existing_resource_group_name2_from_state = data.terraform_remote_state.Susser-Bank.outputs.existing_resource_group_name2
   existing_virtual_network_name_from_state = data.terraform_remote_state.Susser-Bank.outputs.existing_virtual_network_name
   existing_subnet_name3_from_state = data.terraform_remote_state.Susser-Bank.outputs.existing_subnet_name3
-  admin_password = module.Susser-Bank.admin_password
+  admin_password = random_password.admin_password.result
 
   location         = var.location
 }
