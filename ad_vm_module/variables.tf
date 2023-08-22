@@ -22,3 +22,7 @@ variable "location" {
   type    = string
   default = "South Central US"
 }
+
+variable "admin_password" {
+  type = string
+}
