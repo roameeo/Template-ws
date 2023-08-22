@@ -12,7 +12,7 @@ data "azurerm_virtual_network" "existing_virtual_network_name" {
 }
 
 data "azurerm_subnet" "existing_subnet_name" {
-  name                 = var.existing_subnet_name2_from_state
+  name                 = var.existing_subnet_name_from_state
   virtual_network_name = var.existing_virtual_network_name_from_state
   resource_group_name  = var.existing_resource_group_name_from_state
 }
