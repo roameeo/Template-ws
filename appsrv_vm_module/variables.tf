@@ -31,7 +31,7 @@ variable "appsrv_vm_names" {
 variable "appsrv_nic_names" {
   type    = list(string)
   default = ["axiom01-nic", "axiomsb01-nic", "kas01-nic", "pl01-nic", "sf01-nic", "sfsb01-nic", "syn01-nic", "vera01-nic"]
-	}
+	} 
 
 variable "appsrv_vm_nic_map" {
   type = map(string)

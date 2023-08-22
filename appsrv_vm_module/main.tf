@@ -1,8 +1,6 @@
-resource "azurerm_virtual_network" "existing_subnet_name3" {
-  name                = "APPSERV-SUBNET-SC"
-  virtual_network_name = var.existing_virtual_network_name_from_state
+data "azurerm_virtual_network" "existing_virtual_network_name" {
+  name                = var.existing_virtual_network_name_from_state
   resource_group_name = var.existing_resource_group_name_from_state
-  address_prefixes    = ["10.15.3.0/24"]
 }
 
 data "azurerm_subnet" "existing_subnet3" {
@@ -16,15 +14,15 @@ data "terraform_remote_state" "Susser-Bank" {
   backend = "local"  # Use the appropriate backend configuration
 
   config = {
-    path = ".terraform.tfstate" 
+    path = "terraform.tfstate" 
   }
 }
 
 resource "azurerm_network_interface" "appsrv_nics" {
-  for_each            = toset(var.appsrv_nic_names)
+  for_each            = toset(var.appsrv_nic_names)                                                                                                              
   name                = each.value
   location            = var.location
-  resource_group_name = var.existing_resource_group_name2
+  resource_group_name = var.existing_resource_group_name2_from_state
 
   ip_configuration {
     name                          = "ipconfig-${each.key}"
@@ -37,7 +35,7 @@ resource "azurerm_virtual_machine" "appsrv_vms" {
   for_each            = toset(var.appsrv_vm_names)
   name                = each.key
   location            = var.location
-  resource_group_name = var.existing_resource_group_name
+  resource_group_name = var.existing_resource_group_name_from_state
 
   network_interface_ids = [azurerm_network_interface.appsrv_nics[var.appsrv_vm_nic_map[each.key]].id]
 
@@ -61,7 +59,7 @@ resource "azurerm_virtual_machine" "appsrv_vms" {
   os_profile {
     computer_name        = each.key
     admin_username       = "azureadmin"
-    admin_password       = random_password.admin_password.result
+    admin_password       = data.terraform_remote_state.Susser-Bank.outputs.admin_password
   }
 
   os_profile_windows_config {
@@ -70,12 +68,12 @@ resource "azurerm_virtual_machine" "appsrv_vms" {
 
   boot_diagnostics {
     enabled             = true
-    storage_uri = "https://susserbankbootdiag.file.core.windows.net/"
+    storage_uri = "https://Susser-Bankbootdiag.file.core.windows.net/"
   }
 
   tags = {
     ServerType = "Application Server"
     buildby     = "Stormy Winters"
-    BuildDate   = "08/18/2023"
+    BuildDate   = "08/21/2023"
   }
 }
