@@ -18,6 +18,23 @@ variable "existing_subnet_name" {
   default = "AD-SUBNET-SC"
 }
 
+variable "existing_network_interface" {
+  type = string
+  default = "dc01-nic"
+}
+
+variable "existing_network_interface2" {
+  type = string
+  default = "dc02-nic"
+}
+
+variable "exisiting_network_interface3"{
+  type = string
+  default = "ca01-nic"
+}
+
+
+
 variable "location" {
   type    = string
   default = "South Central US"

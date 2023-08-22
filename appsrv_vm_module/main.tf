@@ -19,7 +19,7 @@ data "terraform_remote_state" "Susser-Bank" {
 }
 
 resource "azurerm_network_interface" "appsrv_nics" {
-  for_each            = toset(var.appsrv_nic_names)
+  for_each            = toset(var.appsrv_nic_names)                                                                                                              
   name                = each.value
   location            = var.location
   resource_group_name = var.existing_resource_group_name2_from_state
@@ -59,7 +59,11 @@ resource "azurerm_virtual_machine" "appsrv_vms" {
   os_profile {
     computer_name        = each.key
     admin_username       = "azureadmin"
+<<<<<<< HEAD
     admin_password       = module.appsrv_vm_module.admin_password
+=======
+    admin_password       = data.terraform_remote_state.Susser-Bank.outputs.admin_password
+>>>>>>> 8ec790c2d3110810d0994773d175308bdd99f48f
   }
 
   os_profile_windows_config {
