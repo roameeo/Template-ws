@@ -2,10 +2,6 @@
 data "terraform_remote_state" "Susser-Bank" {
   backend = "local"  # Use the appropriate backend configuration
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 8ec790c2d3110810d0994773d175308bdd99f48f
   config = {
     path = ".terraform.tfstate"  # Adjust the path to your state file
   }
@@ -19,11 +15,6 @@ module "ad_vm_module" {
   existing_resource_group_name2_from_state = data.terraform_remote_state.Susser-Bank.outputs.existing_resource_group_name2
   existing_virtual_network_name_from_state = data.terraform_remote_state.Susser-Bank.outputs.existing_virtual_network_name
   existing_subnet_name_from_state = data.terraform_remote_state.Susser-Bank.outputs.existing_subnet_name
-<<<<<<< HEAD
-
-  admin_password = module.random_password.admin_password
-=======
->>>>>>> 8ec790c2d3110810d0994773d175308bdd99f48f
 }
 
 #Application servers
@@ -37,8 +28,4 @@ module "appsrv_vm_module" {
   existing_subnet_name3_from_state = data.terraform_remote_state.Susser-Bank.outputs.existing_subnet_name3
 
   location         = var.location
-<<<<<<< HEAD
-  admin_password = module.random_password.admin_password
-=======
->>>>>>> 8ec790c2d3110810d0994773d175308bdd99f48f
 }
