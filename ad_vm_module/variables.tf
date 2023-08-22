@@ -33,7 +33,10 @@ variable "exisiting_network_interface3"{
   default = "ca01-nic"
 }
 
-
+variable "existing_vm_names" {
+  type    = list(string)
+  default = []
+}
 
 variable "location" {
   type    = string

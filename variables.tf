@@ -122,3 +122,4 @@ variable "location" {
   type    = string
   default = "South Central US"
 }
+
