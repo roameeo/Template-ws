@@ -1,5 +1,5 @@
 # Fetch values from the remote state file
-data "terraform_remote_state" "Susser-Bank" {
+data "terraform_remote_state" "root" {
   backend = "local"  # Use the appropriate backend configuration
 
   config = {
@@ -12,10 +12,10 @@ data "terraform_remote_state" "Susser-Bank" {
 module "ad_vm_module" {
   source = "./ad_vm_module"
 
-  existing_resource_group_name_from_state = data.terraform_remote_state.Susser-Bank.outputs.existing_resource_group_name
-  existing_resource_group_name2_from_state = data.terraform_remote_state.Susser-Bank.outputs.existing_resource_group_name2
-  existing_virtual_network_name_from_state = data.terraform_remote_state.Susser-Bank.outputs.existing_virtual_network_name
-  existing_subnet_name_from_state = data.terraform_remote_state.Susser-Bank.outputs.existing_subnet_name
+  existing_resource_group_name_from_state = data.terraform_remote_state.root.outputs.existing_resource_group_name
+  existing_resource_group_name2_from_state = data.terraform_remote_state.root.outputs.existing_resource_group_name2
+  existing_virtual_network_name_from_state = data.terraform_remote_state.root.outputs.existing_virtual_network_name
+  existing_subnet_name_from_state = data.terraform_remote_state.root.outputs.existing_subnet_name
   admin_password = random_password.admin_password.result
 }
 
@@ -24,10 +24,10 @@ module "appsrv_vm_module" {
   source = "./appsrv_vm_module"
 
   # Reference the state file to fetch resource information
-  existing_resource_group_name_from_state = data.terraform_remote_state.Susser-Bank.outputs.existing_resource_group_name
-  existing_resource_group_name2_from_state = data.terraform_remote_state.Susser-Bank.outputs.existing_resource_group_name2
-  existing_virtual_network_name_from_state = data.terraform_remote_state.Susser-Bank.outputs.existing_virtual_network_name
-  existing_subnet_name3_from_state = data.terraform_remote_state.Susser-Bank.outputs.existing_subnet_name3
+  existing_resource_group_name_from_state = data.terraform_remote_state.root.outputs.existing_resource_group_name
+  existing_resource_group_name2_from_state = data.terraform_remote_state.root.outputs.existing_resource_group_name2
+  existing_virtual_network_name_from_state = data.terraform_remote_state.root.outputs.existing_virtual_network_name
+  existing_subnet_name3_from_state = data.terraform_remote_state.root.outputs.existing_subnet_name3
   admin_password = random_password.admin_password.result
 
   location         = var.location

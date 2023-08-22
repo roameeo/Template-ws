@@ -1,4 +1,4 @@
-data "terraform_remote_state" "Susser-Bank" {
+data "terraform_remote_state" "root" {
   backend = "local"  # Use the appropriate backend configuration
 
   config = {
