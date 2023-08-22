@@ -13,7 +13,3 @@ output "existing_virtual_network_name" {
 output "existing_subnet_name" {
   value = existing_subnet_name_from_state
 }
-
-output "existing_vm_names" {
-  value = existing_vm_names_from_state
-}

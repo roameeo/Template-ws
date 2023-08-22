@@ -18,11 +18,6 @@ variable "existing_subnet_name_from_state" {
   default = null
 }
 
-#variable "existing_vm_names" {
-#  type    = list(string)
-#  default = []
-# }
-
 variable "location" {
   type    = string
   default = "South Central US"

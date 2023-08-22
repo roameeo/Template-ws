@@ -8,15 +8,6 @@ output "existing_vm_info" {
   }
 }
 
-output "existing_vm_names" {
-  value = module.ad_vm_module.existing_vm_names
-}
-
-output "existing_vm_ips" {
-  value = module.ad_vm_module.existing_vm_ips
-}
-
-
 output "admin_password" {
   value = random_password.admin_password.result
 }

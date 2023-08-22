@@ -7,11 +7,6 @@ data "terraform_remote_state" "Susser-Bank" {
   }
 }
 
-data "azurerm_virtual_machine" "existing_vms" {
-  count = length(var.existing_vm_names_from_state)
-  name  = var.existing_vm_names_from_state[count.index]
-}
-
 
 #Active Directory
 module "ad_vm_module" {
