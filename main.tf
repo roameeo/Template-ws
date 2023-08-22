@@ -11,10 +11,10 @@ data "terraform_remote_state" "Susser-Bank" {
 module "ad_vm_module" {
   source = "./ad_vm_module"
 
-  existing_resource_group_name_from_state = data.terraform_remote_state.Susser-Bank.outputs.existing_resource_group_name
-  existing_resource_group_name2_from_state = data.terraform_remote_state.Susser-Bank.outputs.existing_resource_group_name2
-  existing_virtual_network_name_from_state = data.terraform_remote_state.Susser-Bank.outputs.existing_virtual_network_name
-  existing_subnet_name_from_state = data.terraform_remote_state.Susser-Bank.outputs.existing_subnet_name
+  # existing_resource_group_name_from_state = data.terraform_remote_state.Susser-Bank.outputs.existing_resource_group_name
+  # existing_resource_group_name2_from_state = data.terraform_remote_state.Susser-Bank.outputs.existing_resource_group_name2
+  # existing_virtual_network_name_from_state = data.terraform_remote_state.Susser-Bank.outputs.existing_virtual_network_name
+  # existing_subnet_name_from_state = data.terraform_remote_state.Susser-Bank.outputs.existing_subnet_name
 }
 
 #Application servers
